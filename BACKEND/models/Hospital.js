@@ -28,7 +28,7 @@ const hospitalSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    location: {
+    address: {
         type: String,
         required: true
     },

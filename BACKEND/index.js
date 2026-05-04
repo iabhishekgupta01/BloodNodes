@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
-const bloodRequestRoutes = require('./routes/bloodRequests');
-const donationCampRoutes = require('./routes/donationCamps');
-const hospitalRoutes = require('./routes/hospitals');
+// const userRoutes = require('./routes/user.js');
+// const bloodRequestRoutes = require('./routes/bloodRequest.js');
+// const donationCampRoutes = require('./routes/donationCamp.js');
+// const hospitalRoutes = require('./routes/hospital.js');
 
 
 
@@ -45,10 +45,10 @@ app.use((req,res,next)=>{
 
 
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/blood-requests', bloodRequestRoutes);
-app.use('/api/donation-camps', donationCampRoutes);
-app.use('/api/hospitals', hospitalRoutes);
+// app.use('/api/users', userRoutes);
+// app.use('/api/blood-requests', bloodRequestRoutes);
+// app.use('/api/donation-camps', donationCampRoutes);
+// app.use('/api/hospitals', hospitalRoutes);
 
 
 
@@ -60,8 +60,8 @@ app.get('/', (req, res) => {
 //     next(new ExpressError(404,"Page not found...!"));
 // });
 
-// app.use((err,req,res,next)=>{
-//     const {statusCode=500}=err;
-//     if(!err.message) err.message="Something went wrong...!";
-//     res.status(statusCode).json({error:err.message});
-// });
+app.use((err,req,res,next)=>{
+    const {statusCode=500}=err;
+    if(!err.message) err.message="Something went wrong...!";
+    res.status(statusCode).json({error:err.message});
+});
