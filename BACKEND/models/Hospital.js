@@ -13,6 +13,7 @@ const hospitalSchema = new mongoose.Schema({
         email:{
             type:String,
             unique:true,
+            required:true,
         },
         phone:{
             type:Number,
@@ -34,7 +35,6 @@ const hospitalSchema = new mongoose.Schema({
     },
     pincode:{
         type:Number,
-        length:6,
         required:true   
     },
     inventory: {

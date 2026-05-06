@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-// const userRoutes = require('./routes/user.js');
-// const bloodRequestRoutes = require('./routes/bloodRequest.js');
-// const donationCampRoutes = require('./routes/donationCamp.js');
-// const hospitalRoutes = require('./routes/hospital.js');
+const userRoutes = require('./routes/user.js');
+const bloodRequestRoutes = require('./routes/bloodRequest.js');
+const donationCampRoutes = require('./routes/donationCamp.js');
+const hospitalRoutes = require('./routes/hospital.js');
 
 
 
@@ -45,10 +45,10 @@ app.use((req,res,next)=>{
 
 
 app.use('/api/auth', authRoutes);
-// app.use('/api/users', userRoutes);
-// app.use('/api/blood-requests', bloodRequestRoutes);
-// app.use('/api/donation-camps', donationCampRoutes);
-// app.use('/api/hospitals', hospitalRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/blood-requests', bloodRequestRoutes);
+app.use('/api/donation-camps', donationCampRoutes);
+app.use('/api/hospitals', hospitalRoutes);
 
 
 

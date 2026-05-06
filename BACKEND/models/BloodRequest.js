@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const bloodRequestSchema = new mongoose.Schema({
-    hospitalId: {
+    hospital: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Hospital',
     },
@@ -19,7 +19,7 @@ const bloodRequestSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['active', 'fulfilled', 'cancelled', ],
+        enum: ['active', 'fulfilled', 'emergency', ],
         default: 'active',
     },
 

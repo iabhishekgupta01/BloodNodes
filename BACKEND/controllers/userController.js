@@ -39,6 +39,10 @@ module.exports.updateUser=async(req,res)=>{
         if(!user){
             return res.status(404).json({message:"User not found"});
         }
+
+        if(req.user.id!==id){
+            return res.status(403).json({message:"Unauthorized"});
+        }
         if(name) user.name=name;
         if(contact) user.contact=contact;   
         if(bloodGroup) user.bloodGroup=bloodGroup;

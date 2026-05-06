@@ -1,0 +1,29 @@
+{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmExYTdjNmRmYjBiMTA3YTVhODlhMiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc4MDc2MTg1LCJleHAiOjE3ODU4NTIxODV9.Jr3C0qcp3FLpqPaxPztxw5qHbeRL8mIU7jFpYeoO2H8",
+
+
+  "email": "john.donor@example.com",
+  "password": "SecurePass123"
+
+
+
+}
+,
+
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmI0OWNiYzliYzI2YjE4ZjM4NWJmMCIsInJvbGUiOiJob3NwaXRhbCIsImlhdCI6MTc3ODA3NjQwMCwiZXhwIjoxNzg1ODUyNDAwfQ.IVgZWiUK521kT47p-XAHCfNOfhWfAHvN-9I5A-sSRg0",
+  "role": "hospital",
+  "id": "69fb49cbc9bc26b18f385bf0",
+
+  "email": "admin@cityhospital.com",
+  "password": "HospitalPass@123"
+
+}
+
+
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmI0OWVhYzliYzI2YjE4ZjM4NWJmMSIsInJvbGUiOiJob3NwaXRhbCIsImlhdCI6MTc3ODA3OTExMywiZXhwIjoxNzg1ODU1MTEzfQ.8xNIuetf7i91VVKmV7-AD22iJ2ZqYN6l1tAOUzBXzFU",
+  "role": "hospital",
+  "id": "69fb49eac9bc26b18f385bf1"
+}

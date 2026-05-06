@@ -15,7 +15,6 @@ const donationCampSchema = new mongoose.Schema({
             type: String,},
         pincode: {
             type: Number,
-            length: 6,
             required: true
         },
 
@@ -29,15 +28,12 @@ const donationCampSchema = new mongoose.Schema({
     },
     organizer: {
         type: String,
-        enum: ['Hospital', 'NGO', 'Community Group'],
+        enum: ['Hospital', 'NGO', 'Community Group', 'User'],
         required: true
     },
     organizerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: {
-            type: String,
-            enum: ['Hospital', 'NGO', 'User'],
-        },
+        refPath: 'organizer'
     },
 
     description: {

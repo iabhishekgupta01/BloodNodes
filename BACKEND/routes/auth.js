@@ -10,7 +10,7 @@ router.route('/register-user').post(authController.registerUser);
 
 router.route('/login').post(authController.login);
 router.route('/register-hospital').post(authController.registerHospital);
- 
+
 router.route('/logout').post(authController.logoutUser);
 
 module.exports=router;

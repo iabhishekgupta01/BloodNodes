@@ -39,6 +39,8 @@ const isHospital = (req, res, next) => {
     next();
 };
 
+
+
 module.exports = {
     isHospital,
     authenticateToken

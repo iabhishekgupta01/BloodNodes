@@ -1,4 +1,10 @@
+# Documentation files
 SRS.md
+API_TESTING_GUIDE.md
+QUICK_REFERENCE.md
+TOKEN_GUIDE_HINDI.md
+TOKEN_POSTMAN_VISUAL.md
+Postman_Collection.json
 
 # Dependencies
 node_modules/

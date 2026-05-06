@@ -9,9 +9,10 @@ const userSchema = new mongoose.Schema({
         email: {
             type: String,
             unique: true,
+            required: true,
         },
         phone: {
-            type: Number,
+            type: String,
             unique: true,
             required: true,
         },
@@ -35,7 +36,6 @@ const userSchema = new mongoose.Schema({
     },
     pincode: {
         type: Number,
-        length: 6,
         required: true
     },
 });
