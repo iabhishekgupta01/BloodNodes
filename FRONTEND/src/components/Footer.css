@@ -1,0 +1,250 @@
+/* Footer Styling */
+.footer {
+  background: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* Footer Column */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brand Info Column */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: fit-content;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: translateY(-2px);
+}
+
+.footer-logo-icon {
+  font-size: 1.5rem;
+}
+
+.footer-logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+
+.footer-description {
+  font-size: 0.95rem;
+  color: rgba(26, 26, 26, 0.6);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 280px;
+}
+
+/* Column Title */
+.footer-column-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 0.3px;
+}
+
+/* Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.footer-links li a {
+  font-size: 0.95rem;
+  color: rgba(26, 26, 26, 0.6);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 500;
+}
+
+.footer-links li a:hover {
+  color: #c41e3a;
+  padding-left: 4px;
+}
+
+.footer-links li a::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background: #c41e3a;
+  transition: width 0.3s ease;
+}
+
+.footer-links li a:hover::before {
+  width: 4px;
+}
+
+/* Contact Info */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.footer-email,
+.footer-phone {
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.footer-email a,
+.footer-phone a {
+  color: rgba(26, 26, 26, 0.6);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-email a:hover,
+.footer-phone a:hover {
+  color: #c41e3a;
+}
+
+/* Social Icons */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(26, 26, 26, 0.05);
+  color: rgba(26, 26, 26, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background: #c41e3a;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.25);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 0.9rem;
+  color: rgba(26, 26, 26, 0.5);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    padding: 3.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem;
+  }
+
+  .footer-column {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .footer-column:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .footer-links li a:hover::before {
+    width: 0;
+  }
+
+  .footer-links li a:hover {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 2rem 1rem;
+  }
+
+  .footer-bottom {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-logo-text {
+    font-size: 1.125rem;
+  }
+
+  .footer-description {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  .footer-column-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    gap: 0.75rem;
+  }
+
+  .social-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .social-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}

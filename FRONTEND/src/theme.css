@@ -1,24 +1,375 @@
-/* src/theme.css */
+/* =========================
+   BLOODNODE GLOBAL THEME
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Core Brand Colors */
-  --color-primary: #DAE364; /* Greenish Yellow */
-  --color-primary-dark: #c5cd52;
-  --color-danger: #FF2A54;  /* Vibrant Pink */
-  --color-danger-dark: #e61b42;
-  
-  /* Backgrounds & Text */
-  --bg-main: #F4F7FE;
-  --bg-white: #FFFFFF;
-  --text-dark: #1F2937;
-  --text-muted: #6B7280;
-  --text-light: #F9FAFB;
 
-  /* Glassmorphism Variables */
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  /* COLORS */
+  --primary-color: #C1121F;
+  --primary-dark: #8B0E18;
+  --secondary-color: #F5F5F5;
 
-  /* Spacing Variables */
-  --nav-height: 70px;
+  --background-color: #FFFFFF;
+  --background-soft: #FAFAFA;
+  --background-muted: #F5F5F5;
+
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-light: #6B7280;
+
+  --border-color: #E5E7EB;
+
+  --success-color: #16A34A;
+  --warning-color: #F59E0B;
+  --danger-color: #DC2626;
+
+  /* SHADOWS */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+
+  /* BORDER RADIUS */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  /* CONTAINER */
+  --container-width: 1280px;
+
+  /* TRANSITIONS */
+  --transition: all 0.3s ease;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background-color);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   GLOBAL TYPOGRAPHY
+========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+
+/* =========================
+   GLOBAL LINKS
+========================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+
+/* =========================
+   GLOBAL BUTTONS
+========================= */
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.primary-btn {
+  background: var(--primary-color);
+  color: white;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: white;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+.secondary-btn:hover {
+  background: var(--background-muted);
+}
+
+
+/* =========================
+   LAYOUT HELPERS
+========================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 7rem 0;
+}
+
+.section-sm {
+  padding: 4rem 0;
+}
+
+.bg-light {
+  background: var(--background-muted);
+}
+
+
+/* =========================
+   CARD DESIGN
+========================= */
+
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+
+/* =========================
+   GRID SYSTEM
+========================= */
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+/* =========================
+   FLEX HELPERS
+========================= */
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  outline: none;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary-color);
+}
+
+
+/* =========================
+   IMAGE HANDLING
+========================= */
+
+img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+.fade-up {
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1024px) {
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section {
+    padding: 5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 0 1.2rem;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  h1 {
+    line-height: 1.1;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
 }
