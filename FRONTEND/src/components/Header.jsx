@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,15 +32,16 @@ function Header() {
 
         {/* Desktop Navigation */}
         <nav className="nav-desktop">
-          <a href="#home" className="nav-link">Home</a>
-          <a href="#about" className="nav-link">About</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/camps" className="nav-link">Camps</Link>
+          <Link to="/about" className="nav-link">About</Link>
+          <Link to="/contact" className="nav-link">Contact</Link>
         </nav>
 
         {/* Auth Buttons - Desktop */}
         <div className="auth-buttons-desktop">
-          <button className="btn-login">Login</button>
-          <button className="btn-register">Register</button>
+          <button className="btn-login"><Link to="/login">Login</Link></button>
+          <button className="btn-register"><Link to="/register">Register</Link></button>
         </div>
 
         {/* Mobile Hamburger Menu */}
@@ -57,11 +59,12 @@ function Header() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <nav className="nav-mobile">
-          <a href="#home" className="nav-link-mobile">Home</a>
-          <a href="#about" className="nav-link-mobile">About</a>
-          <a href="#contact" className="nav-link-mobile">Contact</a>
-          <button className="btn-login-mobile">Login</button>
-          <button className="btn-register-mobile">Register</button>
+          <Link to="/" className="nav-link-mobile">Home</Link>
+          <Link to="/camps" className="nav-link-mobile">Camps</Link>
+          <Link to="/about" className="nav-link-mobile">About</Link>
+          <Link to="/contact" className="nav-link-mobile">Contact</Link>
+          <button className="btn-login-mobile"><Link to="/login">Login</Link></button>
+          <button className="btn-register-mobile"><Link to="/register">Register</Link></button>
         </nav>
       )}
     </header>

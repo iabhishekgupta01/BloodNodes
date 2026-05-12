@@ -1,0 +1,98 @@
+/* requests.css */
+
+/* REQUEST SECTION */
+
+.requests-wrapper{
+  width:100%;
+}
+
+/* REQUESTS SCROLL */
+
+.requests-scroll{
+  display:flex;
+
+  gap:20px;
+
+  overflow-x:auto;
+
+  scroll-behavior:smooth;
+
+  padding-bottom:6px;
+}
+
+.requests-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.requests-scroll{
+  scrollbar-width:none;
+}
+
+/* REQUEST CARD */
+
+.request-card{
+  min-width:320px;
+
+  background:white;
+
+  border-radius:28px;
+
+  padding:22px;
+
+  border:1px solid #f1f1f1;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.request-card:hover{
+  transform:translateY(-4px);
+}
+
+.active-request-card{
+  border-color:#dc2626;
+
+  background:#fff8f8;
+}
+
+/* MODAL */
+
+.modal-overlay{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,0.45);
+
+  backdrop-filter:blur(6px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  z-index:9999;
+}
+
+/* MAP SECTION */
+
+.active-map-wrapper{
+  display:flex;
+  flex-direction:column;
+
+  gap:24px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  .request-card{
+    min-width:280px;
+  }
+}

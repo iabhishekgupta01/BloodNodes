@@ -1,0 +1,65 @@
+/* sidebar.css */
+
+/* LEFT SIDEBAR */
+
+.left-sidebar{
+  background:white;
+
+  border-radius:30px;
+
+  padding:22px;
+
+  height:100%;
+
+  border:1px solid #f1f1f1;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+
+  overflow:hidden;
+}
+
+/* RIGHT SIDEBAR */
+
+.right-sidebar{
+  display:flex;
+  flex-direction:column;
+
+  gap:22px;
+}
+
+/* REQUESTS LIST */
+
+.requests-list{
+  height:calc(100vh - 180px);
+
+  overflow-y:auto;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+/* STATUS CARD */
+
+.status-card{
+  border-radius:30px;
+
+  overflow:hidden;
+}
+
+/* INFO CARD */
+
+.info-card{
+  background:white;
+
+  border-radius:26px;
+
+  padding:24px;
+
+  border:1px solid #f1f1f1;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+}

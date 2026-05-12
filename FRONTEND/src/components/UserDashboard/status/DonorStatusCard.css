@@ -1,0 +1,176 @@
+/* DonorStatusCard.css */
+
+.donor-status-card{
+  background:linear-gradient(
+    135deg,
+    #b91c1c,
+    #dc2626
+  );
+
+  border-radius:30px;
+
+  padding:28px;
+
+  color:white;
+
+  box-shadow:
+    0 14px 32px rgba(185,28,28,0.18);
+}
+
+/* TOP */
+
+.status-top{
+  display:flex;
+  align-items:center;
+  gap:18px;
+
+  margin-bottom:24px;
+}
+
+.status-icon{
+  width:72px;
+  height:72px;
+
+  border-radius:22px;
+
+  background:rgba(255,255,255,0.15);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.status-top h2{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.status-top p{
+  opacity:0.9;
+}
+
+/* BADGES */
+
+.status-badges{
+  display:flex;
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:28px;
+}
+
+.status-badge{
+  padding:10px 14px;
+
+  border-radius:40px;
+
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  font-size:13px;
+
+  font-weight:600;
+}
+
+.verified{
+  background:rgba(255,255,255,0.14);
+}
+
+.active{
+  background:rgba(255,255,255,0.1);
+}
+
+/* INFO GRID */
+
+.status-info-grid{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+
+  margin-bottom:28px;
+}
+
+.status-info-card{
+  background:rgba(255,255,255,0.12);
+
+  border-radius:22px;
+
+  padding:18px;
+
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.info-icon{
+  width:48px;
+  height:48px;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.12);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.status-info-card span{
+  opacity:0.85;
+
+  font-size:14px;
+}
+
+.status-info-card strong{
+  display:block;
+
+  margin-top:6px;
+
+  font-size:17px;
+}
+
+/* STREAK */
+
+.donation-streak{
+  background:rgba(255,255,255,0.1);
+
+  border-radius:24px;
+
+  padding:20px;
+}
+
+.streak-top{
+  display:flex;
+  justify-content:space-between;
+
+  margin-bottom:18px;
+}
+
+.streak-top h3{
+  font-size:18px;
+}
+
+.streak-top span{
+  font-weight:600;
+}
+
+.streak-progress{
+  width:100%;
+
+  height:10px;
+
+  border-radius:40px;
+
+  background:rgba(255,255,255,0.12);
+
+  overflow:hidden;
+}
+
+.streak-fill{
+  width:70%;
+  height:100%;
+
+  background:white;
+}

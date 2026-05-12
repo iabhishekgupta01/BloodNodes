@@ -1,0 +1,159 @@
+/* LeftSidebar.css */
+
+.left-sidebar{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.left-header{
+  margin-bottom:22px;
+}
+
+.left-header h2{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.left-header p{
+  color:#6b7280;
+}
+
+.requests-list{
+  flex:1;
+  overflow-y:auto;
+
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.request-item{
+  background:#fafafa;
+
+  border-radius:22px;
+
+  padding:18px;
+
+  border:1px solid #f1f1f1;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.request-item:hover{
+  transform:translateY(-2px);
+}
+
+.active-request{
+  border-color:#dc2626;
+  background:#fff5f5;
+}
+
+.request-top{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+
+  margin-bottom:18px;
+}
+
+.hospital-name h3{
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+.hospital-name span{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  width:fit-content;
+
+  font-size:13px;
+
+  color:#16a34a;
+
+  font-weight:600;
+}
+
+.urgency{
+  width:fit-content;
+
+  padding:8px 12px;
+
+  border-radius:40px;
+
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  font-size:12px;
+
+  font-weight:600;
+}
+
+.critical{
+  background:#fee2e2;
+  color:#dc2626;
+}
+
+.urgent{
+  background:#ffedd5;
+  color:#ea580c;
+}
+
+.blood-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.blood-group{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  color:#b91c1c;
+
+  font-weight:700;
+}
+
+.request-distance{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  color:#6b7280;
+
+  font-size:14px;
+}
+
+.request-time{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  color:#6b7280;
+
+  font-size:14px;
+}
+
+.accepted-badge{
+  margin-top:18px;
+
+  background:#dcfce7;
+
+  color:#15803d;
+
+  padding:10px 14px;
+
+  border-radius:14px;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  text-align:center;
+}

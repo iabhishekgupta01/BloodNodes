@@ -1,0 +1,121 @@
+/* PopupModal.css */
+
+.popup-overlay{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,0.45);
+
+  backdrop-filter:blur(6px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  z-index:9999;
+}
+
+.popup-modal{
+  width:100%;
+  max-width:560px;
+
+  background:white;
+
+  border-radius:32px;
+
+  position:relative;
+
+  animation:popupFade 0.3s ease;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.12);
+}
+
+.popup-close-btn{
+  position:absolute;
+
+  top:18px;
+  right:18px;
+
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#f3f4f6;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.popup-close-btn:hover{
+  background:#e5e7eb;
+}
+
+.popup-content{
+  padding:34px;
+}
+
+.popup-content h2{
+  font-size:34px;
+
+  margin-bottom:14px;
+
+  color:#111827;
+}
+
+.popup-content p{
+  color:#6b7280;
+
+  line-height:1.7;
+
+  margin-bottom:28px;
+}
+
+.popup-body{
+  width:100%;
+}
+
+/* ANIMATION */
+
+@keyframes popupFade{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  .popup-content{
+    padding:24px;
+  }
+
+  .popup-content h2{
+    font-size:28px;
+  }
+
+  .popup-modal{
+    border-radius:24px;
+  }
+}

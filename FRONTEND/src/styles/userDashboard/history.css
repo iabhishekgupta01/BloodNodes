@@ -1,0 +1,46 @@
+/* history.css */
+
+/* HISTORY WRAPPER */
+
+.donation-history-wrapper{
+  width:100%;
+}
+
+/* LIST */
+
+.history-cards-list{
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+/* CARD */
+
+.history-card{
+  background:white;
+
+  border-radius:26px;
+
+  padding:22px;
+
+  border:1px solid #f1f1f1;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+
+  transition:0.3s;
+}
+
+.history-card:hover{
+  transform:translateY(-3px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  .history-card{
+    border-radius:22px;
+  }
+}

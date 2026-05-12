@@ -1,0 +1,104 @@
+/* eligibility.css */
+
+/* ELIGIBILITY HERO */
+
+.eligibility-hero{
+  background:linear-gradient(
+    135deg,
+    #b91c1c,
+    #dc2626
+  );
+
+  border-radius:32px;
+
+  padding:30px;
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:24px;
+
+  box-shadow:
+    0 14px 32px rgba(185,28,28,0.18);
+}
+
+/* QUESTIONS */
+
+.question-card-wrapper{
+  background:white;
+
+  border-radius:30px;
+
+  padding:32px;
+
+  border:1px solid #f1f1f1;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+}
+
+/* PROGRESS */
+
+.progress-track{
+  width:100%;
+
+  height:12px;
+
+  border-radius:40px;
+
+  overflow:hidden;
+
+  background:#f3f4f6;
+}
+
+.progress-fill{
+  height:100%;
+
+  border-radius:40px;
+
+  background:linear-gradient(
+    90deg,
+    #dc2626,
+    #b91c1c
+  );
+}
+
+/* RESULT */
+
+.eligibility-result-card{
+  background:white;
+
+  border-radius:30px;
+
+  padding:32px;
+
+  border:1px solid #f1f1f1;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+  .eligibility-hero{
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+}
+
+@media(max-width:700px){
+
+  .question-card-wrapper{
+    padding:24px;
+  }
+
+  .eligibility-result-card{
+    padding:24px;
+  }
+}

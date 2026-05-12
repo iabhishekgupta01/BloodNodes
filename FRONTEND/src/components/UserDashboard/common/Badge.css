@@ -1,0 +1,40 @@
+/* Badge.css */
+
+.badge{
+  width:fit-content;
+
+  padding:10px 14px;
+
+  border-radius:40px;
+
+  font-size:13px;
+
+  font-weight:600;
+}
+
+/* TYPES */
+
+.badge-default{
+  background:#f3f4f6;
+  color:#374151;
+}
+
+.badge-success{
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.badge-danger{
+  background:#fee2e2;
+  color:#dc2626;
+}
+
+.badge-warning{
+  background:#fef3c7;
+  color:#d97706;
+}
+
+.badge-info{
+  background:#dbeafe;
+  color:#2563eb;
+}

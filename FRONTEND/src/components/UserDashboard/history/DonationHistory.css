@@ -1,0 +1,113 @@
+/* DonationHistory.css */
+
+.donation-history-wrapper{
+  width:100%;
+}
+
+/* HEADER */
+
+.history-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:18px;
+
+  margin-bottom:28px;
+}
+
+.history-header h2{
+  font-size:30px;
+
+  margin-bottom:10px;
+}
+
+.history-header p{
+  color:#6b7280;
+}
+
+/* BUTTON */
+
+.view-all-btn{
+  height:50px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:#111827;
+
+  color:white;
+
+  padding:0 18px;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.view-all-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* LIST */
+
+.history-cards-list{
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+/* FOOTER */
+
+.history-footer{
+  margin-top:24px;
+}
+
+.history-summary{
+  width:fit-content;
+
+  padding:12px 16px;
+
+  border-radius:16px;
+
+  background:#fafafa;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  color:#6b7280;
+
+  font-size:14px;
+
+  font-weight:500;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  .history-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .history-header h2{
+    font-size:24px;
+  }
+
+  .view-all-btn{
+    width:100%;
+    justify-content:center;
+  }
+}
