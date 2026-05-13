@@ -14,7 +14,7 @@ function Footer() {
               <span className="footer-logo-text">BloodNode</span>
             </div>
             <p className="footer-description">
-              Real-time emergency blood coordination powered by AI. Connecting blood donors and hospitals during critical moments to save lives faster.
+              Real-time emergency blood coordination powered by BloodNode. Connecting blood donors and hospitals during critical moments to save lives faster.
             </p>
           </div>
         </div>

@@ -4,7 +4,7 @@ import './theme.css';
 import HomePage from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
-import UserDashboard from './pages/UserDashboard.jsx';
+
 import DonationCamps from './pages/DonationCamps.jsx';
 import AboutPage from './pages/About.jsx';
 import ContactPage from './pages/Contact.jsx';
@@ -14,6 +14,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UpdateBloodRequest from './pages/hospital/UpdateBloodRequest.jsx';
 import CreateDonationCamp from './pages/hospital/CreateDonationCamp.jsx';
 import UpdateCampInfo from './pages/hospital/UpdateCampInfo.jsx';
+import HospitalCampDetails from './pages/hospital/camp/HospitalCampDetails.jsx';
+import HospitalBloodRequestDetails from './pages/hospital/HospitalBloodRequestDetails.jsx';
+import HospitalBloodRequests from './pages/hospital/camp/HospitalBloodRequest.jsx';
+import HospitalInventoryUpdate from './pages/hospital/HospitalInventoryUpdate.jsx';
+import HosNotification from './pages/hospital/HosNotification.jsx';
+import UserNotify from './pages/user/UserNotify.jsx';
+import UserBloodRequest from './pages/user/UserBloodRequest.jsx';
+import UserDonationHistory from './pages/user/userDonationHistory.jsx';
+import NotFound from './pages/NotFound.jsx';
+import HospitalDashboard from './pages/hospital/HospitalDashboard.jsx';
+import UserDashboard from './pages/user/UserDashboard.jsx';
+
 
 function App() {
   
@@ -21,18 +33,55 @@ function App() {
   return (
     <>
     <Routes>
+
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/user" element={<UserDashboard />} />
       <Route path="/camps" element={<DonationCamps />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/hospitals/create-blood-request" element={<CreateBloodRequest />} />
-      <Route path="/hospitals/edit-blood-request" element={<UpdateBloodRequest />} />
-      <Route path="/hospitals/organize-camp" element={<CreateDonationCamp/>} />
-      <Route path="/hospitals/update-camp" element={<UpdateCampInfo/>} />
-      <Route path="*" element={<h1>404 Not Found</h1>} />
+
+
+      <Route path="/user">
+
+        <Route path="dashboard" element={<UserDashboard />} />
+        <Route path="notifications" element={<UserNotify />} />
+        <Route path="blood-requests/:id" element={<UserBloodRequest />} />
+        <Route path="donation-history" element={<UserDonationHistory />} />
+
+      </Route>
+
+      <Route path="/hospital">
+
+        <Route path="dashboard" element={<HospitalDashboard />} />
+
+
+        {/* Blood Requests */}
+        <Route path="blood-requests">
+
+          <Route index element={<HospitalBloodRequests />} />
+          <Route path="create" element={<CreateBloodRequest />} />
+          <Route path="edit/:id" element={<UpdateBloodRequest />} />
+          <Route path=":id" element={<HospitalBloodRequestDetails />} />
+
+        </Route>
+
+
+        {/* Donation Camps */}
+        <Route path="camps">
+          <Route index element={<HospitalCampDetails />} />
+          <Route path="create" element={<CreateDonationCamp />} />
+          <Route path="edit/:id" element={<UpdateCampInfo />} />
+          <Route path=":id" element={<HospitalCampDetails />} />
+        </Route>
+
+        <Route path="inventory" element={<HospitalInventoryUpdate />} />
+        <Route path="notifications" element={<HosNotification />} />
+
+      </Route>
+
+
+      <Route path="*" element={<NotFound/>} />
       
     </Routes>
 

@@ -1,0 +1,487 @@
+.hospital-request-page {
+  min-height: 100vh;
+  background: var(--background-soft);
+}
+
+/* TOP BAR */
+
+.compact-request-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.compact-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.compact-blood-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  background: rgba(193, 18, 31, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.compact-blood-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.compact-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.compact-tags {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.compact-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.compact-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.compact-progress {
+  width: 280px;
+}
+
+.compact-progress-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* LAYOUT */
+
+.hospital-request-layout {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.request-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* MOBILE HERO */
+
+.mobile-request-card {
+  display: none;
+}
+
+.hero-top {
+  display: flex;
+  gap: 1rem;
+}
+
+.blood-box {
+  width: 75px;
+  height: 75px;
+  border-radius: 22px;
+  background: rgba(193, 18, 31, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blood-box svg {
+  width: 34px;
+  height: 34px;
+}
+
+.hero-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tag-group {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.blood-tag,
+.critical-tag {
+  padding: 8px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.blood-tag {
+  background: rgba(193, 18, 31, 0.1);
+  color: var(--primary-color);
+}
+
+.critical-tag {
+  background: #fee2e2;
+  color: var(--danger-color);
+}
+
+.mini-details {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.mini-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+/* PROGRESS */
+
+.progress-wrapper {
+  margin-top: 1.6rem;
+}
+
+.progress-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 15px;
+  border-radius: 50px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    #c1121f,
+    #ef4444
+  );
+}
+
+/* PATIENT DESCRIPTION */
+
+.patient-description-content {
+  margin-top: 1rem;
+}
+
+.patient-contact-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(193, 18, 31, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.patient-contact-box svg {
+  color: var(--primary-color);
+}
+
+.patient-contact-box span {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* DONORS */
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donor-count {
+  background: rgba(193, 18, 31, 0.1);
+  color: var(--primary-color);
+  padding: 10px 15px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.donors-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.donor-card-item {
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  padding: 1rem;
+  transition: var(--transition);
+}
+
+.donor-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.donor-card-top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.donor-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: rgba(193, 18, 31, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.donor-meta {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.donor-meta span {
+  background: var(--background-muted);
+  padding: 5px 10px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+}
+
+.distance-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #eff6ff !important;
+  color: #2563eb;
+}
+
+.donor-card-bottom {
+  margin-top: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-pill {
+  padding: 8px 14px;
+  border-radius: 40px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.confirmed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.contact-btn {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* SIDEBAR */
+
+.request-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.sidebar-title svg {
+  color: var(--primary-color);
+}
+
+/* STATUS */
+
+.status-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.status-option {
+  border: 1px solid var(--border-color);
+  padding: 14px 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.status-option input {
+  display: none;
+}
+
+.radio-circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  position: relative;
+}
+
+.selected-status {
+  border-color: var(--primary-color);
+  background: rgba(193, 18, 31, 0.05);
+}
+
+.selected-status .radio-circle {
+  border-color: var(--primary-color);
+}
+
+.selected-status .radio-circle::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* TOOLS */
+
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--background-muted);
+  font-weight: 600;
+}
+
+.tool-btn:hover {
+  background: white;
+  border: 1px solid var(--primary-color);
+}
+
+.close-request-btn {
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 15px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    135deg,
+    #111827,
+    #1f2937
+  );
+  color: white;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .compact-request-bar {
+    display: none;
+  }
+
+  .hospital-request-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .request-sidebar {
+    position: static;
+  }
+
+  .mobile-request-card {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .donors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-top {
+    flex-direction: column;
+  }
+
+  .donor-card-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+}

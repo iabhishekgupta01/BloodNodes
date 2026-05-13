@@ -1,0 +1,400 @@
+.user-request-page {
+  min-height: 100vh;
+  background: var(--background-soft);
+  margin-top:7rem;
+}
+
+/* LAYOUT */
+
+.request-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.85fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* MAIN CARD */
+
+.request-card {
+  background: white;
+  border: 1px solid
+    var(--border-color);
+  border-radius: 24px;
+  padding: 1rem;
+  animation: fadeSlide 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.request-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    140deg,
+    rgba(193, 18, 31, 0.03),
+    transparent
+  );
+  pointer-events: none;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TOP */
+
+.request-top {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.blood-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 17px;
+  background: rgba(193, 18, 31, 0.08);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blood-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.top-info {
+  flex: 1;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.title-row h2 {
+  font-size: 1.02rem;
+}
+
+.blood-tag,
+.status-tag {
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.blood-tag {
+  background: rgba(193, 18, 31, 0.08);
+  color: var(--primary-color);
+}
+
+.status-tag {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* MINI INFO */
+
+.mini-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.45rem;
+}
+
+.mini-info span {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  font-size: 0.72rem;
+  color: var(--text-light);
+}
+
+/* HOSPITAL */
+
+.hospital-strip {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hospital-strip span {
+  height: 34px;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  background: var(--background-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* PROGRESS */
+
+.progress-section {
+  margin-top: 1rem;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+  font-size: 0.76rem;
+}
+
+.progress-top strong {
+  color: var(--primary-color);
+}
+
+.progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #ececec;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #c1121f,
+    #ef4444
+  );
+}
+
+/* DESCRIPTION */
+
+.description-box {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-radius: 18px;
+  background: var(--background-muted);
+}
+
+.description-box p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ACTIONS */
+
+.action-row {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.accept-btn,
+.reject-btn {
+  height: 38px;
+  border-radius: 12px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+
+.accept-btn {
+  flex: 1;
+  background: var(--primary-color);
+  color: white;
+}
+
+.reject-btn {
+  width: 110px;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* MAP */
+
+.map-card {
+  background: white;
+  border: 1px solid
+    var(--border-color);
+  border-radius: 24px;
+  padding: 1rem;
+  position: sticky;
+  top: 90px;
+}
+
+.map-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.map-header h3 {
+  font-size: 0.95rem;
+}
+
+.map-header p {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+}
+
+.navigate-btn {
+  height: 36px;
+  border-radius: 12px;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* MAP UI */
+
+.dummy-map {
+  height: 360px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid
+    var(--border-color);
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0.65)
+    ),
+    url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+.hospital-point,
+.user-point {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.hospital-point {
+  top: 60px;
+  left: 55px;
+  background: var(--primary-color);
+}
+
+.user-point {
+  bottom: 60px;
+  right: 55px;
+  background: #2563eb;
+}
+
+.map-line {
+  position: absolute;
+  top: 155px;
+  left: 95px;
+  width: 55%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--primary-color) 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  transform: rotate(26deg);
+}
+
+.distance-pill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: white;
+  box-shadow: var(--shadow-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* MOBILE */
+
+@media (max-width: 992px) {
+  .request-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-card {
+    position: static;
+  }
+
+  .dummy-map {
+    height: 220px;
+  }
+
+  .hospital-point {
+    top: 35px;
+    left: 35px;
+  }
+
+  .user-point {
+    bottom: 35px;
+    right: 35px;
+  }
+
+  .map-line {
+    top: 95px;
+    left: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .request-card,
+  .map-card {
+    border-radius: 20px;
+    padding: 0.9rem;
+  }
+
+  .request-top {
+    flex-direction: column;
+  }
+
+  .blood-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .action-row {
+    flex-direction: column;
+  }
+
+  .reject-btn {
+    width: 100%;
+  }
+
+  .dummy-map {
+    height: 180px;
+  }
+}
