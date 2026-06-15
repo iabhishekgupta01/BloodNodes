@@ -1,19 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import "./DonationCamps.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
 import {
   CalendarDays,
   Clock3,
   MapPin,
   Check,
-  X,
 } from "lucide-react";
 
 function DonationCamps() {
 
-  const [selectedCamp, setSelectedCamp] =
-    useState(null);
+  const navigate = useNavigate();
 
   const [activeFilter, setActiveFilter] =
     useState("All");
@@ -120,15 +121,15 @@ function DonationCamps() {
 
   return (
     <>
-    <Header />
+      <Header />
 
-    <section className="donation-page section">
+      <section className="donation-page section">
 
-      <div className="container">
+        <div className="container">
 
-        {/* HERO */}
+          {/* HERO */}
 
-        {/* <div className="camp-hero">
+          {/* <div className="camp-hero">
 
           <div className="hero-left">
 
@@ -173,335 +174,157 @@ function DonationCamps() {
 
         </div> */}
 
-        {/* FILTERS */}
+          {/* FILTERS */}
 
-        <div className="filter-wrapper">
+          <div className="filter-wrapper">
 
-          {filters.map((filter) => (
-
-            <button
-              key={filter}
-              className={`filter-chip ${
-                activeFilter === filter
-                  ? "active"
-                  : ""
-              }`}
-              onClick={() =>
-                setActiveFilter(filter)
-              }
-            >
-              {filter}
-            </button>
-
-          ))}
-
-        </div>
-
-        {/* GRID */}
-
-        <div className="camp-grid">
-
-          {filteredCamps.map((camp) => (
-
-            <div
-              key={camp.id}
-              className="modern-camp-card"
-              onClick={() =>
-                setSelectedCamp(camp)
-              }
-            >
-
-              {/* IMAGE */}
-
-              <div className="card-image-wrap">
-
-                <img
-                  src={camp.image}
-                  alt={camp.title}
-                />
-
-                <span className="live-badge">
-                  🔴 Live Camp
-                </span>
-
-              </div>
-
-              {/* CONTENT */}
-
-              <div className="modern-card-content">
-
-                <div className="title-row">
-
-                  <h3>
-                    {camp.title}
-                  </h3>
-
-                  {interested.includes(
-                    camp.id
-                  ) && (
-
-                    <div className="interested-icon">
-                      <Check size={16} />
-                    </div>
-
-                  )}
-
-                </div>
-
-                <p className="mini-description">
-                  Organized with trusted
-                  healthcare partners and
-                  medical staff.
-                </p>
-
-                {/* INFO */}
-
-                <div className="info-row">
-
-                  <span>
-                    <MapPin size={15} />
-                    {camp.city}
-                  </span>
-
-                  <span>
-                    <CalendarDays size={15} />
-                    {camp.date}
-                  </span>
-
-                  <span>
-                    <Clock3 size={15} />
-                    {camp.time}
-                  </span>
-
-                </div>
-
-                {/* HOSPITAL */}
-
-                <div className="hospital-strip">
-                  🏥 {camp.organizer}
-                </div>
-
-                {/* BUTTON */}
-
-                <button
-                  className={`interest-btn ${
-                    interested.includes(
-                      camp.id
-                    )
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={(e) => {
-
-                    e.stopPropagation();
-
-                    toggleInterested(
-                      camp.id
-                    );
-                  }}
-                >
-                  {interested.includes(
-                    camp.id
-                  )
-                    ? "Interested ✓"
-                    : "I'm Interested"}
-                </button>
-
-              </div>
-
-            </div>
-
-          ))}
-
-        </div>
-
-      </div>
-
-      {/* MODAL */}
-
-      {selectedCamp && (
-
-        <div
-          className="sheet-overlay"
-          onClick={() =>
-            setSelectedCamp(null)
-          }
-        >
-
-          <div
-            className="bottom-sheet"
-            onClick={(e) =>
-              e.stopPropagation()
-            }
-          >
-
-            {/* IMAGE */}
-
-            <div className="sheet-image-wrap">
-
-              <img
-                src={selectedCamp.image}
-                alt={selectedCamp.title}
-                className="sheet-image"
-              />
+            {filters.map((filter) => (
 
               <button
-                className="close-btn"
+                key={filter}
+                className={`filter-chip ${activeFilter === filter
+                    ? "active"
+                    : ""
+                  }`}
                 onClick={() =>
-                  setSelectedCamp(null)
+                  setActiveFilter(filter)
                 }
               >
-                <X size={18} />
+                {filter}
               </button>
 
-            </div>
+            ))}
 
-            {/* CONTENT */}
+          </div>
 
-            <div className="sheet-content">
+          {/* GRID */}
 
-              {/* HEADING */}
+          <div className="camp-grid">
 
-              <div className="sheet-heading">
+            {filteredCamps.map((camp) => (
 
-                <div>
+              <div
+                key={camp.id}
+                className="modern-camp-card"
+                onClick={() =>
+                  navigate(`/camps/${camp.id}`)
+                }
+              >
 
-                  <span className="sheet-mini-badge">
-                    🩸 Donation Camp
+                {/* IMAGE */}
+
+                <div className="card-image-wrap">
+
+                  <img
+                    src={camp.image}
+                    alt={camp.title}
+                  />
+
+                  <span className="live-badge">
+                    🔴 Live Camp
                   </span>
-
-                  <h2>
-                    {selectedCamp.title}
-                  </h2>
 
                 </div>
 
-              </div>
+                {/* CONTENT */}
 
-              {/* TAGS */}
+                <div className="modern-card-content">
 
-              <div className="sheet-tags">
-
-                <span>
-                  📍 {selectedCamp.city}
-                </span>
-
-                <span>
-                  📅 {selectedCamp.date}
-                </span>
-
-                <span>
-                  ⏰ {selectedCamp.time}
-                </span>
-
-              </div>
-
-              {/* ABOUT */}
-
-              <div className="sheet-section">
-
-                <h4>
-                  About This Camp
-                </h4>
-
-                <p className="sheet-description">
-                  {
-                    selectedCamp.description
-                  }
-                </p>
-
-              </div>
-
-              {/* ORGANIZER */}
-
-              <div className="organizer-box">
-
-                <div className="organizer-top">
-
-                  <div className="organizer-icon">
-                    🏥
-                  </div>
-
-                  <div>
+                  <div className="title-row">
 
                     <h3>
-                      {
-                        selectedCamp.organizer
-                      }
+                      {camp.title}
                     </h3>
 
+                    {interested.includes(
+                      camp.id
+                    ) && (
+
+                        <div className="interested-icon">
+                          <Check size={16} />
+                        </div>
+
+                      )}
+
+                  </div>
+
+                  <p className="mini-description">
+                    Organized with trusted
+                    healthcare partners and
+                    medical staff.
+                  </p>
+
+                  {/* INFO */}
+
+                  <div className="info-row">
+
                     <span>
-                      Healthcare Partner
+                      <MapPin size={15} />
+                      {camp.city}
+                    </span>
+
+                    <span>
+                      <CalendarDays size={15} />
+                      {camp.date}
+                    </span>
+
+                    <span>
+                      <Clock3 size={15} />
+                      {camp.time}
                     </span>
 
                   </div>
 
-                </div>
+                  {/* HOSPITAL */}
 
-                <p className="organizer-description">
-                  {
-                    selectedCamp.hospitalInfo
-                  }
-                </p>
+                  <div className="hospital-strip">
+                    🏥 {camp.organizer}
+                  </div>
+
+                  {/* BUTTON */}
+
+                  <button
+                    className={`interest-btn ${interested.includes(
+                      camp.id
+                    )
+                        ? "active"
+                        : ""
+                      }`}
+                    onClick={(e) => {
+
+                      e.stopPropagation();
+
+                      toggleInterested(
+                        camp.id
+                      );
+                    }}
+                  >
+                    {interested.includes(
+                      camp.id
+                    )
+                      ? "Interested ✓"
+                      : "I'm Interested"}
+                  </button>
+
+                </div>
 
               </div>
 
-              {/* EXTRA INFO */}
-
-              <div className="camp-extra-info">
-
-                <div className="extra-item">
-                  🍎 Refreshments
-                  available
-                </div>
-
-                <div className="extra-item">
-                  🧑‍⚕️ Medical staff
-                  available
-                </div>
-
-                <div className="extra-item">
-                  📄 Digital donor
-                  certificate
-                </div>
-
-              </div>
-
-              {/* BUTTON */}
-
-              <button
-                className={`interest-btn full ${
-                  interested.includes(
-                    selectedCamp.id
-                  )
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() =>
-                  toggleInterested(
-                    selectedCamp.id
-                  )
-                }
-              >
-                {interested.includes(
-                  selectedCamp.id
-                )
-                  ? "Interested ✓"
-                  : "Mark Interested"}
-              </button>
-
-            </div>
+            ))}
 
           </div>
 
         </div>
 
-      )}
+        {/* MODAL */}
 
-    </section>
-    <Footer />
+        
+
+      </section>
+      <Footer />
     </>
   );
 }
+
 
 export default DonationCamps;

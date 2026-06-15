@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Bell,
@@ -25,8 +26,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 const HospitalDashboard = () => {
+  const navigate = useNavigate();
+
   const requests = [
     {
+      id: "rahul-sharma",
       patient: "Rahul Sharma",
       blood: "O+",
       progress: 50,
@@ -35,6 +39,7 @@ const HospitalDashboard = () => {
     },
 
     {
+      id: "anjali-patel",
       patient: "Anjali Patel",
       blood: "A+",
       progress: 100,
@@ -99,7 +104,15 @@ const HospitalDashboard = () => {
             </p>
           </div>
 
-          <button className="hero-btn">
+          <button
+            type="button"
+            className="hero-btn"
+            onClick={() =>
+              navigate(
+                "/hospital/blood-requests/create"
+              )
+            }
+          >
             <Plus size={16} />
             Create Request
           </button>
@@ -126,7 +139,15 @@ const HospitalDashboard = () => {
               </div>
 
               <div className="notify-list">
-                <button className="notify-item">
+                <button
+                  type="button"
+                  className="notify-item"
+                  onClick={() =>
+                    navigate(
+                      "/hospital/blood-requests/rahul-sharma"
+                    )
+                  }
+                >
                   <div className="notify-icon blue">
                     <Droplets
                       size={15}
@@ -148,7 +169,15 @@ const HospitalDashboard = () => {
                   />
                 </button>
 
-                <button className="notify-item">
+                <button
+                  type="button"
+                  className="notify-item"
+                  onClick={() =>
+                    navigate(
+                      "/hospital/inventory"
+                    )
+                  }
+                >
                   <div className="notify-icon yellow">
                     <AlertCircle
                       size={15}
@@ -170,7 +199,15 @@ const HospitalDashboard = () => {
                   />
                 </button>
 
-                <button className="notify-item">
+                <button
+                  type="button"
+                  className="notify-item"
+                  onClick={() =>
+                    navigate(
+                      "/hospital/notifications"
+                    )
+                  }
+                >
                   <div className="notify-icon green">
                     <CheckCircle2
                       size={15}
@@ -214,7 +251,14 @@ const HospitalDashboard = () => {
                 </div>
               </div>
 
-              <button>
+              <button
+                type="button"
+                onClick={() =>
+                  navigate(
+                    "/hospital/notifications"
+                  )
+                }
+              >
                 Manage
               </button>
             </div>
@@ -226,14 +270,26 @@ const HospitalDashboard = () => {
             {/* ACTIONS */}
 
             <div className="actions-grid fade-up">
-              <button>
+              <button
+                type="button"
+                onClick={() =>
+                  navigate(
+                    "/hospital/blood-requests/create"
+                  )
+                }
+              >
                 <Plus size={18} />
                 <span>
                   Create Request
                 </span>
               </button>
 
-              <button>
+              <button
+                type="button"
+                onClick={() =>
+                  navigate("/hospital/camps/create")
+                }
+              >
                 <CalendarDays
                   size={18}
                 />
@@ -242,7 +298,12 @@ const HospitalDashboard = () => {
                 </span>
               </button>
 
-              <button>
+              <button
+                type="button"
+                onClick={() =>
+                  navigate("/hospital/inventory")
+                }
+              >
                 <Droplets
                   size={18}
                 />
@@ -251,7 +312,12 @@ const HospitalDashboard = () => {
                 </span>
               </button>
 
-              <button>
+              <button
+                type="button"
+                onClick={() =>
+                  navigate("/hospital/dashboard")
+                }
+              >
                 <Building2
                   size={18}
                 />
@@ -270,7 +336,15 @@ const HospitalDashboard = () => {
                   Active Requests
                 </h3>
 
-                <button className="view-btn">
+                <button
+                  type="button"
+                  className="view-btn"
+                  onClick={() =>
+                    navigate(
+                      "/hospital/blood-requests"
+                    )
+                  }
+                >
                   View All
                 </button>
               </div>
@@ -315,7 +389,15 @@ const HospitalDashboard = () => {
                           </p>
                         </div>
 
-                        <button className="mini-btn">
+                        <button
+                          type="button"
+                          className="mini-btn"
+                          onClick={() =>
+                            navigate(
+                              `/hospital/blood-requests/${item.id}`
+                            )
+                          }
+                        >
                           <ArrowUpRight
                             size={14}
                           />
@@ -465,7 +547,12 @@ const HospitalDashboard = () => {
                   Analytics Overview
                 </h3>
 
-                <button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigate("/hospital/notifications")
+                  }
+                >
                   More
                   <ChevronRight
                     size={14}
@@ -599,7 +686,13 @@ const HospitalDashboard = () => {
                 )}
               </div>
 
-              <button className="inventory-btn">
+              <button
+                type="button"
+                className="inventory-btn"
+                onClick={() =>
+                  navigate("/hospital/inventory")
+                }
+              >
                 Update Inventory
               </button>
             </div>

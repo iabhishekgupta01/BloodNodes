@@ -12,6 +12,7 @@
 
 .header.scrolled {
   background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -63,6 +64,81 @@
   gap: 3rem;
   flex: 1;
   justify-content: center;
+}
+
+/* Right side controls inside desktop nav */
+.nav-right{
+  margin-left: 1.5rem;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.btn-notification{
+  position:relative;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color: rgba(26,26,26,0.9);
+}
+
+.notif-badge{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:#ef4444;
+  color:white;
+  font-size:10px;
+  padding:2px 6px;
+  border-radius:999px;
+}
+
+.avatar-wrap{
+  position:relative;
+}
+
+.btn-avatar{
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px;
+  border-radius:8px;
+}
+
+.avatar-dropdown{
+  position:absolute;
+  right:0;
+  top:44px;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+  min-width:160px;
+  overflow:hidden;
+  z-index:1200;
+}
+
+.avatar-dropdown .dropdown-item{
+  display:block;
+  padding:10px 14px;
+  color:#111827;
+  text-decoration:none;
+  font-size:14px;
+  border-bottom:1px solid #f3f4f6;
+}
+
+.avatar-dropdown .dropdown-item:last-child{
+  border-bottom:none;
+}
+
+.avatar-dropdown .dropdown-item:hover{
+  background:#fff5f5;
+  color:#b91c1c;
 }
 
 .nav-link {
@@ -137,6 +213,25 @@
   transform: translateY(-2px);
 }
 
+/* Logout button styling */
+.btn-logout {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(26,26,26,0.08);
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.btn-logout:hover {
+  background: rgba(26,26,26,0.04);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
 /* Hamburger Menu */
 .hamburger {
   display: none;
@@ -182,6 +277,17 @@
   gap: 1.5rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   animation: slideDown 0.3s ease;
+}
+
+.btn-notification-mobile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0.75rem 1rem;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  color:#1a1a1a;
 }
 
 @keyframes slideDown {
@@ -239,6 +345,23 @@
 
 .btn-register-mobile:active {
   background: #a21530;
+}
+
+.btn-logout-mobile {
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(26,26,26,0.08);
+  width: 100%;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.btn-logout-mobile:active {
+  background: rgba(26,26,26,0.04);
 }
 
 /* Responsive Design */
