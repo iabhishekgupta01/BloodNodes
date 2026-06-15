@@ -19,6 +19,10 @@ exports.createDonationCamp = async (req, res) => {
         if (!campName || !date || !location || !time) {
             return res.status(400).json({ message: "Camp name, date and location are required" });
         }
+
+        const imageUrl = req.file ? req.file.path : "";
+
+
         const organizerValue = req.user.role === 'hospital' ? 'Hospital' : 'User';
         const donationCamp = new DonationCamp({
             organizerId: req.user.id,
@@ -27,7 +31,8 @@ exports.createDonationCamp = async (req, res) => {
             date,
             location,
             time,
-            description
+            description,
+            image: imageUrl
         });
         await donationCamp.save();
         return res.status(201).json({ message: "Donation camp created successfully", donationCamp });
