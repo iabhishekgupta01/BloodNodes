@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 const donationCampController=require('../controllers/donationCampController.js');
 const { authenticateToken, isHospital } = require('../middleware/Middleware.js');
-const upload = require('../config/cloudinary.js');
+const {upload} = require('../config/cloudinary.js');
 
 router.route('/').get(donationCampController.getAllDonationCamps);
 router.route('/').post(authenticateToken, isHospital,upload.single('image'), donationCampController.createDonationCamp);

@@ -437,6 +437,15 @@ body{
   cursor:pointer;
 }
 
+.upload-box.uploaded {
+  border: 2px solid #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.upload-box.uploaded .upload-icon {
+  color: #22c55e;
+}
+
 /* BUTTONS */
 
 .button-row{

@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getAllDonationCamps } from "../api/donationCamp.js";
+import { useEffect } from "react";
+
 
 import "./DonationCamps.css";
 import Header from "../components/Header";
@@ -14,6 +17,26 @@ import {
 
 function DonationCamps() {
 
+  const [isLoading, setIsLoading] = useState(true); 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [camps, setCamps] = useState([]);
+
+  useEffect(() => {
+    const fetchCamps = async () => {
+      try {
+        const data = await getAllDonationCamps();
+        setCamps(data);
+      } catch (error) {
+        setErrorMessage(error.message || "An error occurred while fetching donation camps.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCamps();
+  }, []);
+
+
   const navigate = useNavigate();
 
   const [activeFilter, setActiveFilter] =
@@ -22,60 +45,60 @@ function DonationCamps() {
   const [interested, setInterested] =
     useState([]);
 
-  const camps = [
-    {
-      id: 1,
-      title: "Mega Blood Donation Drive",
-      city: "Indore",
-      day: "Today",
-      date: "18 May 2026",
-      time: "10:00 AM",
-      organizer: "Apollo Hospital",
-      image:
-        "https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=1200&auto=format&fit=crop",
-      description:
-        "Join our community blood donation drive and help patients in emergency need. Donors will receive free health screening, refreshments and digital certificates after donation.",
+  
+  //   {
+  //     id: 1,
+  //     title: "Mega Blood Donation Drive",
+  //     city: "Indore",
+  //     day: "Today",
+  //     date: "18 May 2026",
+  //     time: "10:00 AM",
+  //     organizer: "Apollo Hospital",
+  //     image:
+  //       "https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=1200&auto=format&fit=crop",
+  //     description:
+  //       "Join our community blood donation drive and help patients in emergency need. Donors will receive free health screening, refreshments and digital certificates after donation.",
 
-      hospitalInfo:
-        "Apollo Hospital has been conducting community blood donation programs across multiple cities with experienced medical teams, proper donor care and safe blood collection facilities. Their staff will assist donors throughout the complete process including screening, recovery and post-donation support.",
-    },
+  //     hospitalInfo:
+  //       "Apollo Hospital has been conducting community blood donation programs across multiple cities with experienced medical teams, proper donor care and safe blood collection facilities. Their staff will assist donors throughout the complete process including screening, recovery and post-donation support.",
+  //   },
 
-    {
-      id: 2,
-      title: "Youth Donor Camp",
-      city: "Bhopal",
-      day: "Tomorrow",
-      date: "19 May 2026",
-      time: "11:30 AM",
-      organizer: "Red Cross Society",
-      image:
-        "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop",
+  //   {
+  //     id: 2,
+  //     title: "Youth Donor Camp",
+  //     city: "Bhopal",
+  //     day: "Tomorrow",
+  //     date: "19 May 2026",
+  //     time: "11:30 AM",
+  //     organizer: "Red Cross Society",
+  //     image:
+  //       "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop",
 
-      description:
-        "A youth-focused donation camp encouraging first-time donors to participate in safe and guided blood donation activities.",
+  //     description:
+  //       "A youth-focused donation camp encouraging first-time donors to participate in safe and guided blood donation activities.",
 
-      hospitalInfo:
-        "This camp is organized in collaboration with Red Cross Society and local healthcare professionals to ensure proper donor guidance, hygiene standards and emergency medical availability during the event.",
-    },
+  //     hospitalInfo:
+  //       "This camp is organized in collaboration with Red Cross Society and local healthcare professionals to ensure proper donor guidance, hygiene standards and emergency medical availability during the event.",
+  //   },
 
-    {
-      id: 3,
-      title: "Weekend LifeSaver Camp",
-      city: "Indore",
-      day: "Weekend",
-      date: "21 May 2026",
-      time: "09:00 AM",
-      organizer: "Care CHL Hospital",
-      image:
-        "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
+  //   {
+  //     id: 3,
+  //     title: "Weekend LifeSaver Camp",
+  //     city: "Indore",
+  //     day: "Weekend",
+  //     date: "21 May 2026",
+  //     time: "09:00 AM",
+  //     organizer: "Care CHL Hospital",
+  //     image:
+  //       "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
 
-      description:
-        "Weekend donation camp with awareness sessions, donor support and healthcare consultations for participants.",
+  //     description:
+  //       "Weekend donation camp with awareness sessions, donor support and healthcare consultations for participants.",
 
-      hospitalInfo:
-        "Care CHL Hospital is managing donor registration, blood collection and post-donation monitoring with trained staff and proper healthcare support facilities available throughout the event.",
-    },
-  ];
+  //     hospitalInfo:
+  //       "Care CHL Hospital is managing donor registration, blood collection and post-donation monitoring with trained staff and proper healthcare support facilities available throughout the event.",
+  //   },
+  // ];
 
   const filters = [
     "All",
@@ -118,6 +141,25 @@ function DonationCamps() {
 
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading donation camps...</p>
+      </div>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <div className="error-container">
+        <p className="error-message">
+          {errorMessage}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -199,15 +241,17 @@ function DonationCamps() {
 
           {/* GRID */}
 
+          
+
           <div className="camp-grid">
 
             {filteredCamps.map((camp) => (
 
               <div
-                key={camp.id}
+                key={camp._id}
                 className="modern-camp-card"
                 onClick={() =>
-                  navigate(`/camps/${camp.id}`)
+                  navigate(`/camps/${camp._id}`)
                 }
               >
 

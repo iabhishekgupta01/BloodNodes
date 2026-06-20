@@ -1,6 +1,13 @@
 import React from "react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import {getDonationCampById, deleteDonationCamp} from "../../../api/donationCamp.js";
+import {useParams} from "react-router-dom";
+import {useAuth} from "../../../context/AuthContext.jsx";
+
 import {
   MapPin,
   CalendarDays,
@@ -16,22 +23,62 @@ import {
 import "./HospitalCampDetails.css";
 
 const HospitalCampDetails = () => {
-  const camp = {
-    title: "Mega Blood Donation Camp",
-    image:
-      "https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=1200&auto=format&fit=crop",
-    city: "Indore",
-    state: "Madhya Pradesh",
-    address: "Apollo Community Hall, Vijay Nagar",
-    date: "18 May 2026",
-    time: "10:00 AM - 5:00 PM",
-    interested: 128,
-    organizer: "CityCare Hospital",
-    phone: "+91 9876543210",
-    email: "citycarehospital@gmail.com",
-    description:
-      "This donation camp is organized to support emergency blood requirements across nearby hospitals. Donors will receive refreshments, health screening, and donor certificates after successful donation.",
+  const navigate = useNavigate();
+  const [camp, setCamp] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+  const interested = 120;
+  const {id} = useAuth();
+
+  const campId = useParams().id; 
+
+  const isOrganizer = camp && camp.organizerId && camp.organizerId._id === id;
+  const handleDelete = async() => {
+    try{
+      const confirmDelete = window.confirm("Are you sure you want to delete this camp?");
+      if(!confirmDelete){
+        return;
+      }
+      const response = await deleteDonationCamp(campId);
+      alert(response.message);
+      navigate("/camps");
+    }catch(error){
+      alert(error.message || "An error occurred while deleting the camp.");
+    }
+
   };
+
+  const handleUpdate = () => {
+    navigate(`hospital/camps/${campId}/edit`);
+  };
+
+
+  
+
+  useEffect(() => {
+    const fetchCampDetails = async () => {
+      try {
+        
+        const data = await getDonationCampById(campId);
+        setCamp(data);
+        
+      }
+        catch (error) {
+        setErrorMessage(error.message || "An error occurred while fetching camp details.");
+      }
+
+      finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCampDetails();
+  }, []);
+
+  if (isLoading) {
+    return <div className="hospital-camp-page section fade-up"><p>Loading camp details...</p></div>;
+  }
+  
 
   return (
     <><Header />
@@ -54,18 +101,25 @@ const HospitalCampDetails = () => {
             <div className="card camp-description-card">
               <div className="camp-title-row">
                 <h2>{camp.title}</h2>
+                
+                
 
-                <div className="camp-actions">
-                  <button className="secondary-btn action-btn">
-                    <Pencil size={18} />
-                    Update
-                  </button>
 
-                  <button className="delete-btn action-btn">
+                {isOrganizer && (
+                  <div className="camp-actions">
+                    <button className="secondary-btn action-btn" onClick={handleUpdate}>
+                      <Pencil size={18} />
+                      Update
+                    </button>
+
+                  <button className="delete-btn action-btn"
+                   onClick={handleDelete}
+                  
+                   >
                     <Trash2 size={18} />
                     Delete
                   </button>
-                </div>
+                </div>)}
               </div>
 
               <p className="camp-description">{camp.description}</p>
@@ -80,7 +134,7 @@ const HospitalCampDetails = () => {
                 <div>
                   <span>Location</span>
                   <p>
-                    {camp.address}, {camp.city}, {camp.state}
+                    {camp.location.address}, {camp.location.city}, {camp.location.state}
                   </p>
                 </div>
               </div>
@@ -105,7 +159,7 @@ const HospitalCampDetails = () => {
                 <Users size={20} />
                 <div>
                   <span>Interested Donors</span>
-                  <p>{camp.interested} people</p>
+                  <p>{interested} people</p>
                 </div>
               </div>
             </div>
@@ -113,18 +167,18 @@ const HospitalCampDetails = () => {
             <div className="card hospital-card">
               <div className="hospital-header">
                 <Building2 size={22} />
-                <h3>{camp.organizer}</h3>
+                <h3>{camp.organizerId.hospitalName}</h3>
               </div>
 
               <div className="hospital-contact">
                 <div>
                   <Phone size={18} />
-                  <span>{camp.phone}</span>
+                  <span>{camp.organizerId.contact.phone}</span>
                 </div>
 
                 <div>
                   <Mail size={18} />
-                  <span>{camp.email}</span>
+                  <span>{camp.organizerId.contact.email}</span>
                 </div>
               </div>
             </div>

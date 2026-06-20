@@ -28,12 +28,16 @@ const donationCampSchema = new mongoose.Schema({
     },
     organizer: {
         type: String,
-        enum: ['Hospital', 'NGO', 'Community Group', 'User'],
+        enum: ['Hospital', 'NGO', 'User'],
         required: true
     },
     organizerId: {
         type: mongoose.Schema.Types.ObjectId,
         refPath: 'organizer'
+    },
+    image: {
+        type: String,
+        default: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop'
     },
 
     description: {

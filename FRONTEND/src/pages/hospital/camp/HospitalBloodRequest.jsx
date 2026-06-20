@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import {useEffect} from "react";
+import {getAllBloodRequests} from "../../../api/bloodRequest.js";
+import { Link } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import {useAuth} from "../../../context/AuthContext.jsx";
 
 import {
   Search,
@@ -16,67 +21,45 @@ import {
   Eye,
   Plus,
   ArrowUpRight,
+  Heading6,
 } from "lucide-react";
 
 import "./HospitalBloodRequests.css";
 
 const HospitalBloodRequests = () => {
   const navigate = useNavigate();
+  const [requests, setRequests] = useState([]);
+   const { requestId } = useParams();
+   const {id} = useAuth();
+
+  useEffect(() => {
+    const fetchBloodRequests = async () => {
+      
+      try {
+        const data = await getAllBloodRequests();
+        setRequests(data);
+      } catch (error) {
+        console.error("Error fetching blood requests:", error);
+      }
+    };
+
+    fetchBloodRequests();
+  }, []);
+
+
+   
+
+
+
+
+
 
   
 
   const [activeFilter, setActiveFilter] =
     useState("All");
 
-  const requests = [
-    {
-      id: 1,
-      patient: "Rahul Sharma",
-      blood: "O+",
-      units: 2,
-      fulfilled: 1,
-      status: "Active",
-      urgency: "Critical",
-      created: "2 hours ago",
-      date: "15 May 2026",
-    },
-
-    {
-      id: 2,
-      patient: "Anjali Patel",
-      blood: "A+",
-      units: 1,
-      fulfilled: 1,
-      status: "Fulfilled",
-      urgency: "Normal",
-      created: "Yesterday",
-      date: "14 May 2026",
-    },
-
-    {
-      id: 3,
-      patient: "Vikas Jain",
-      blood: "B+",
-      units: 2,
-      fulfilled: 0,
-      status: "Closed",
-      urgency: "Critical",
-      created: "3 days ago",
-      date: "12 May 2026",
-    },
-
-    {
-      id: 4,
-      patient: "Neha Verma",
-      blood: "AB+",
-      units: 1,
-      fulfilled: 0,
-      status: "Active",
-      urgency: "Emergency",
-      created: "5 mins ago",
-      date: "15 May 2026",
-    },
-  ];
+ 
 
   const filters = [
     "All",
@@ -105,10 +88,15 @@ const HospitalBloodRequests = () => {
               </p>
             </div>
 
-            <button className="primary-btn create-btn">
-              <Plus size={18} />
-              Create Request
-            </button>
+            <Link to="/hospital/blood-requests/create">
+              <button className="primary-btn">
+                <Plus size={16} />
+                Create Request
+              </button>
+            </Link>
+          
+
+            
           </div>
 
           {/* FILTERS */}
@@ -174,17 +162,17 @@ const HospitalBloodRequests = () => {
           <div className="requests-grid">
             {requests.map((request) => {
               const percentage =
-                (request.fulfilled /
-                  request.units) *
+                (request.unitsFulfilled /
+                  request.unitsNeeded) *
                 100;
 
               return (
                 <div
                   className="request-card"
-                  key={request.id}
+                  key={request._id}
                   onClick={() =>
                     navigate(
-                      `/hospital/blood-requests/${request.id}`
+                      `/hospital/blood-requests/${request._id}`
                     )
                   }
                 >
@@ -210,7 +198,7 @@ const HospitalBloodRequests = () => {
 
                         <div className="request-tags">
                           <span className="blood-tag">
-                            {request.blood}
+                            {request.bloodGroup}
                           </span>
 
                           <span
@@ -225,15 +213,8 @@ const HospitalBloodRequests = () => {
                           >
                             {request.status}
                           </span>
-                          {(request.urgency ===
-                            "Critical" ||
-                            request.urgency ===
-                            "Emergency") && (
-                              <span className="urgent-tag">
-                                <AlertTriangle size={13} />
-                                {request.urgency}
-                              </span>
-                            )}
+                          
+                           
                         </div>
                       </div>
                     </div>
@@ -247,9 +228,9 @@ const HospitalBloodRequests = () => {
                         </span>
 
                         <h4>
-                          {request.fulfilled}
+                          {request.unitsFulfilled}
                           /
-                          {request.units}
+                          {request.unitsNeeded}
                         </h4>
                       </div>
 
@@ -258,9 +239,9 @@ const HospitalBloodRequests = () => {
                           Posted
                         </span>
 
-                        <h4>
-                          {request.created}
-                        </h4>
+                        <p>
+                          {request.hospital.hospitalName}
+                        </p>
                       </div>
 
                       <div>
@@ -268,9 +249,9 @@ const HospitalBloodRequests = () => {
                           Date
                         </span>
 
-                        <h4>
-                          {request.date}
-                        </h4>
+                        <h6>
+                          {new Date(request.createdAt).toLocaleDateString()}
+                        </h6>
                       </div>
                     </div>
 

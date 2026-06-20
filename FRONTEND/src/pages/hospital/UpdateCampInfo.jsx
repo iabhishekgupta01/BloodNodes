@@ -3,8 +3,16 @@
 import "./UpdateCampInfo.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getDonationCampById,updateDonationCamp } from "../../api/donationCamp.js";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
+
 
 import {
+  Loader2,
   Tent,
   MapPin,
   CalendarDays,
@@ -17,6 +25,83 @@ import {
 } from "lucide-react";
 
 export default function UpdateCampInfo() {
+    const navigate = useNavigate();
+    const [camp, setCamp] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [donors, setDonors] = useState(120);
+    const interested = 120;
+    const {id} = useAuth();
+    const campId = useParams().id;
+
+  useEffect(() => {
+      const fetchCampDetails = async () => {
+        try {
+          
+          const data = await getDonationCampById(campId);
+          
+          setCamp(data);
+          
+        }
+          catch (error) {
+          setErrorMessage(error.message || "An error occurred while fetching camp details.");
+        }
+  
+        finally {
+          setIsLoading(false);
+        }
+      };
+  
+      fetchCampDetails();
+    }, []);
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        setErrorMessage("");
+        setIsLoading(true);
+        const updatedCampData = {
+            campName: camp.campName,
+            date: camp.date,
+            time: camp.time,
+            description: camp.description,
+            location: camp.location,
+            
+        };
+        console.log("Updated Camp Data:", updatedCampData);
+        try {
+             const result=await updateDonationCamp(campId, updatedCampData);
+             console.log("Update result:", result);
+             if(result){
+                alert("Camp updated successfully!");
+                navigate(`/camps/${campId}`);
+             }
+            
+            
+        }
+        catch (error) {
+            setErrorMessage(error.message || "An error occurred while updating camp information.");
+        }finally {
+            setIsLoading(false);
+        }
+    };
+
+
+    const isOrganizer = camp && camp.organizerId && camp.organizerId._id === id;
+    if (!isOrganizer) {
+        return (
+            <div className="update-camp-page">
+                <Header />
+                <div className="not-authorized">
+                    <h2>Unauthorized Access</h2>
+                    <p>You do not have permission to edit this camp information.</p>
+                    <button onClick={() => navigate("/camps")} className="primary-btn">
+                        Back to Camps
+                    </button>
+                </div>
+                <Footer />
+            </div>
+        );
+      };
 
   return (
     <><Header />
@@ -59,7 +144,7 @@ export default function UpdateCampInfo() {
 
         <form
           className="update-form"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleUpdate}
         >
 
           {/* CAMP NAME */}
@@ -76,6 +161,9 @@ export default function UpdateCampInfo() {
 
               <input
                 type="text"
+                onChange={(e) => setCamp({...camp, campName: e.target.value})}
+                value={camp ? camp.campName : ""}
+                
                 placeholder="Enter Camp Name"
               />
 
@@ -143,6 +231,8 @@ export default function UpdateCampInfo() {
 
               <input
                 type="text"
+                onChange={(e) => setCamp({...camp, location: {...camp.location, city: e.target.value}})}
+                value={camp && camp.location ? camp.location.city : ""}
                 placeholder="Enter City"
               />
 
@@ -165,6 +255,8 @@ export default function UpdateCampInfo() {
               <input
                 type="text"
                 placeholder="Enter State"
+                onChange={(e) => setCamp({...camp, location: {...camp.location, state: e.target.value}})}
+                value={camp && camp.location ? camp.location.state : ""}
               />
 
             </div>
@@ -183,7 +275,11 @@ export default function UpdateCampInfo() {
 
               <CalendarDays size={18} />
 
-              <input type="date" />
+              <input
+                type="date"
+                onChange={(e) => setCamp({...camp, date: e.target.value})}
+                
+              />
 
             </div>
 
@@ -201,7 +297,11 @@ export default function UpdateCampInfo() {
 
               <Clock3 size={18} />
 
-              <input type="time" />
+              <input
+                type="time"
+                onChange={(e) => setCamp({...camp, time: e.target.value})}
+                value={camp ? camp.time : ""}
+              /> 
 
             </div>
 
@@ -222,6 +322,9 @@ export default function UpdateCampInfo() {
               <input
                 type="number"
                 placeholder="Expected Donors"
+                onChange={(e)=> setDonors(e.target.value)
+                }
+                value={donors}
               />
 
             </div>
@@ -243,6 +346,8 @@ export default function UpdateCampInfo() {
               <input
                 type="number"
                 placeholder="Enter Pincode"
+                onChange={(e) => setCamp({...camp, location: {...camp.location, pincode: e.target.value}})}
+                value={camp && camp.location ? camp.location.pincode : ""}
               />
 
             </div>
@@ -263,6 +368,8 @@ export default function UpdateCampInfo() {
 
               <textarea
                 placeholder="Enter Full Camp Address..."
+                onChange={(e) => setCamp({...camp, location: {...camp.location, address: e.target.value}})}
+                value={camp && camp.location ? camp.location.address : ""}
               ></textarea>
 
             </div>
@@ -283,6 +390,8 @@ export default function UpdateCampInfo() {
 
               <textarea
                 placeholder="Update camp details..."
+                onChange={(e) => setCamp({...camp, description: e.target.value})}
+                value={camp ? camp.description : ""}
               ></textarea>
 
             </div>
@@ -330,6 +439,7 @@ export default function UpdateCampInfo() {
             <button
               type="button"
               className="secondary-btn"
+              onClick={() => navigate(`/camps/${campId}`)}
             >
 
               Cancel
@@ -337,15 +447,18 @@ export default function UpdateCampInfo() {
             </button>
 
             <button
-              type="submit"
-              className="primary-btn"
-            >
+                    type="submit"
+                    className="primary-btn"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <Loader2 size={18} className="animate-spin" /> 
+                    ) : (
+                      <CheckCircle2 size={18} />
+                    )}
 
-              <CheckCircle2 size={18} />
-
-              Update Camp
-
-            </button>
+                    {isLoading ? "Updating..." : "Update Camp"}
+                  </button>
 
           </div>
 

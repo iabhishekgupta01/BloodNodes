@@ -2,7 +2,7 @@ const BloodRequest = require('../models/BloodRequest.js');
 
 exports.getAllBloodRequests = async (req, res) => {
     try {
-        const bloodRequests = await BloodRequest.find({});
+        const bloodRequests = await BloodRequest.find({}).populate('hospital', 'hospitalName contact');
         if (bloodRequests.length === 0) {
             return res.status(404).json({ message: "No blood requests found" });
         }
@@ -15,16 +15,22 @@ exports.getAllBloodRequests = async (req, res) => {
 
 exports.createBloodRequest = async (req, res) => {
     try {
-        const { bloodGroup, unitsNeeded, status, description } = req.body;
+        const { bloodGroup, unitsNeeded, status, description,image } = req.body;
         if (!bloodGroup || !unitsNeeded) {
             return res.status(400).json({ message: "Blood group and units needed are required" });
         }
+
+
+
+        const imageUrl = req.file ? req.file.path : "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop";
+
         const bloodRequest = new BloodRequest({
             hospital: req.user.id,
             bloodGroup,
             unitsNeeded,
             status,
-            description
+            description,
+            image:imageUrl
         });
         await bloodRequest.save();
         return res.status(201).json({ message: "Blood request created successfully", bloodRequest });

@@ -3,8 +3,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    // Initialize synchronously from localStorage so protected routes
-    // can read auth state on first render (avoids redirect on refresh).
+    
     const getInitialAuth = () => {
         try {
             const token = localStorage.getItem("authToken");

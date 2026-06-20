@@ -9,6 +9,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+const storage2 = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'blood_requests', 
+        allowed_formats: ['jpg', 'jpeg', 'png']
+    }
+});
+
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
@@ -18,5 +26,6 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage: storage });
+const uploadForBloodRequest = multer({ storage: storage2 });
 
-module.exports = upload;
+module.exports = { upload, uploadForBloodRequest };

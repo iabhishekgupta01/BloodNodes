@@ -2,22 +2,26 @@ const DonationCamp = require('../models/DonationCamp.js');
 
 exports.getAllDonationCamps = async (req, res) => {
     try {
-        const donationCamps = await DonationCamp.find({}).populate('organizerId', 'hospitalName contact'); 
+        const donationCamps = await DonationCamp.find({}).populate('organizerId', 'hospitalName contact _id');
         if (donationCamps.length === 0) {
             return res.status(404).json({ message: "No donation camps found" });
         }
         return res.status(200).json(donationCamps);
-    } catch (err) {     
+    } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Internal server error :", error: err.message });
     }
 };
 
-exports.createDonationCamp = async (req, res) => {      
+exports.createDonationCamp = async (req, res) => {
     try {
         const { campName, date, location, time, description } = req.body;
-        if (!campName || !date || !location || !time) {
-            return res.status(400).json({ message: "Camp name, date and location are required" });
+        const parsedLocation =
+            typeof location === "string"
+                ? JSON.parse(location)
+                : location;
+        if (!campName || !date || !parsedLocation || !time) {
+            return res.status(400).json({ message: "All fields are required !" });
         }
 
         const imageUrl = req.file ? req.file.path : "";
@@ -29,7 +33,7 @@ exports.createDonationCamp = async (req, res) => {
             organizer: organizerValue,
             campName,
             date,
-            location,
+            location: parsedLocation,
             time,
             description,
             image: imageUrl
@@ -40,7 +44,7 @@ exports.createDonationCamp = async (req, res) => {
     catch (err) {
         console.error(err);
         res.status(500).json({ message: "Internal server error :", error: err.message });
-    }   
+    }
 };
 
 exports.getDonationCampById = async (req, res) => {
@@ -49,7 +53,7 @@ exports.getDonationCampById = async (req, res) => {
         if (!campId) {
             return res.status(400).json({ message: "Donation camp ID is required" });
         }
-        const donationCamp = await DonationCamp.findById(campId).populate('organizerId', 'hospitalName contact');
+        const donationCamp = await DonationCamp.findById(campId).populate('organizerId', 'hospitalName contact _id');
         if (!donationCamp) {
             return res.status(404).json({ message: "Donation camp not found" });
         }
@@ -74,9 +78,16 @@ exports.updateDonationCamp = async (req, res) => {
             return res.status(403).json({ message: "Unauthorized to update this donation camp" });
         }
         const { campName, date, location, time, description } = req.body;
+
+        const parsedLocation =
+            typeof location === "string"
+                ? JSON.parse(location)
+                : location;
+
+
         if (campName) donationCamp.campName = campName;
         if (date) donationCamp.date = date;
-        if (location) donationCamp.location = location;
+        if (location) donationCamp.location = parsedLocation;
         if (time) donationCamp.time = time;
         if (description) donationCamp.description = description;
         await donationCamp.save();
@@ -84,10 +95,10 @@ exports.updateDonationCamp = async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Internal server error :", error: err.message });
-    }   
+    }
 };
 
-exports.deleteDonationCamp = async (req, res) => {  
+exports.deleteDonationCamp = async (req, res) => {
     try {
         const { campId } = req.params;
         if (!campId) {

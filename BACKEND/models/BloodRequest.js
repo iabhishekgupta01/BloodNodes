@@ -9,6 +9,10 @@ const bloodRequestSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+        default: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop'
+    },
     unitsNeeded: {
         type: Number,
         required: true,
@@ -19,7 +23,7 @@ const bloodRequestSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['active', 'fulfilled', 'emergency', ],
+        enum: ['active', 'fulfilled', 'emergency', 'closed'],
         default: 'active',
     },
 
