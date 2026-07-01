@@ -1,8 +1,12 @@
 import { createContext, useState, useContext, useEffect } from "react";
 
+
 const AuthContext = createContext();
 
+
 const AuthProvider = ({ children }) => {
+    
+    
     
     const getInitialAuth = () => {
         try {
@@ -50,6 +54,7 @@ const AuthProvider = ({ children }) => {
 
     const value = {
         ...authData,
+        
         login,
         logout,
         isAuthenticated,

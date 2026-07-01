@@ -20,6 +20,15 @@ export const registerUser= async (userData)=>{
 
 
 }
+export const getUserProfile = async (userId) => {
+    try {
+        const response = await API.get(`/users/${userId}`);
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : new Error("Network error");
+    }
+};
+
 
 export const registerHospital= async (hospitalData)=>{
     try {

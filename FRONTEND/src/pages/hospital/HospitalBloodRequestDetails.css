@@ -440,6 +440,135 @@
   gap: 0.7rem;
 }
 
+/* CONTACT DIALOG / MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px); /* Glassmorphism effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 400px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.close-icon-btn {
+  background: none;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-icon-btn:hover {
+  color: var(--danger-color);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--background-soft);
+  border-radius: 16px;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(193, 18, 31, 0.1);
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-item span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.contact-item h4 {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-top: 0.2rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.call-btn {
+  background: var(--primary-color);
+  color: white;
+}
+
+.call-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.email-btn {
+  background: var(--background-muted);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.email-btn:hover {
+  background: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1024px) {

@@ -13,7 +13,7 @@ import CreateBloodRequest from './pages/hospital/CreateBloodRequest.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import UpdateBloodRequest from './pages/hospital/UpdateBloodRequest.jsx';
+import UpdateBloodRequests from './pages/hospital/UpdateBloodRequest.jsx';
 import CreateDonationCamp from './pages/hospital/CreateDonationCamp.jsx';
 import UpdateCampInfo from './pages/hospital/UpdateCampInfo.jsx';
 import HospitalCampDetails from './pages/hospital/camp/HospitalCampDetails.jsx';
@@ -28,6 +28,7 @@ import UserDonationHistory from './pages/user/userDonationHistory.jsx';
 import NotFound from './pages/NotFound.jsx';
 import HospitalDashboard from './pages/hospital/HospitalDashboard.jsx';
 import UserDashboard from './pages/user/UserDashboard.jsx';
+import BloodRequestsFeed from './pages/user/BloodRequestsFeed.jsx';
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
         <Route path="/camps/:id" element={<HospitalCampDetails/>}/>
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/blood-requests" element={<BloodRequestsFeed />} />
+        <Route path="blood-requests/:id" element={<UserBloodRequest />} />
 
 
         <Route path="/user"
@@ -54,7 +57,7 @@ function App() {
 
           <Route path="dashboard" element={<UserDashboard />} />
           <Route path="notifications" element={<UserNotify />} />
-          <Route path="blood-requests/:id" element={<UserBloodRequest />} />
+          
           <Route path="donation-history" element={<UserDonationHistory />} />
           
 
@@ -78,8 +81,8 @@ function App() {
 
             <Route index element={<HospitalBloodRequests />} />
             <Route path="create" element={<CreateBloodRequest />} />
-            <Route path=":id/edit" element={<UpdateBloodRequest />} />
-            <Route path=":id" element={<HospitalBloodRequestDetails />} />
+            <Route path=":requestId/edit" element={<UpdateBloodRequests/>} />
+            <Route path=":requestId" element={<HospitalBloodRequestDetails />} />
 
           </Route>
 

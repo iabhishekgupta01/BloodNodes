@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import {useEffect} from "react";
-import {getAllBloodRequests} from "../../../api/bloodRequest.js";
+import { useEffect } from "react";
+import { getAllBloodRequests } from "../../../api/bloodRequest.js";
 import { Link } from "react-router-dom";
-import {useParams} from "react-router-dom";
-import {useAuth} from "../../../context/AuthContext.jsx";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext.jsx";
 
 import {
   Search,
@@ -29,12 +29,17 @@ import "./HospitalBloodRequests.css";
 const HospitalBloodRequests = () => {
   const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
-   const { requestId } = useParams();
-   const {id} = useAuth();
+  const { requestId } = useParams();
+  const { id } = useAuth();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+
 
   useEffect(() => {
     const fetchBloodRequests = async () => {
-      
+
       try {
         const data = await getAllBloodRequests();
         setRequests(data);
@@ -46,20 +51,22 @@ const HospitalBloodRequests = () => {
     fetchBloodRequests();
   }, []);
 
-
-   
-
-
-
-
-
-
   
+
+
+
+
+
+
+
+
+
+
 
   const [activeFilter, setActiveFilter] =
     useState("All");
 
- 
+
 
   const filters = [
     "All",
@@ -94,9 +101,9 @@ const HospitalBloodRequests = () => {
                 Create Request
               </button>
             </Link>
-          
 
-            
+
+
           </div>
 
           {/* FILTERS */}
@@ -148,8 +155,8 @@ const HospitalBloodRequests = () => {
                   setActiveFilter(item)
                 }
                 className={`status-filter-btn ${activeFilter === item
-                    ? "active-filter"
-                    : ""
+                  ? "active-filter"
+                  : ""
                   }`}
               >
                 {item}
@@ -186,9 +193,9 @@ const HospitalBloodRequests = () => {
 
                       <div className="request-info">
                         <div className="request-title-row">
-                          <h3>
-                            {request.patient}
-                          </h3>
+                          <h5>
+                            Pateint's Name
+                          </h5>
 
                           <ArrowUpRight
                             size={18}
@@ -203,18 +210,18 @@ const HospitalBloodRequests = () => {
 
                           <span
                             className={`status-tag ${request.status ===
-                                "Active"
-                                ? "active-tag"
-                                : request.status ===
-                                  "Closed"
-                                  ? "closed-tag"
-                                  : "fulfilled-tag"
+                              "Active"
+                              ? "active-tag"
+                              : request.status ===
+                                "Closed"
+                                ? "closed-tag"
+                                : "fulfilled-tag"
                               }`}
                           >
                             {request.status}
                           </span>
-                          
-                           
+
+
                         </div>
                       </div>
                     </div>
@@ -299,13 +306,12 @@ const HospitalBloodRequests = () => {
                     </button>
 
                     <button
+                      className="danger-tool"
                       onClick={(e) => {
                         e.stopPropagation();
                       }}
                     >
-                      <CircleCheckBig
-                        size={16}
-                      />
+                      <CircleCheckBig size={16} />
                     </button>
 
                     <button

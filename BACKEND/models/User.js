@@ -19,9 +19,17 @@ const userSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['available', 'unavailable','donated', 'requested'],
+        enum: ['available', 'unavailable','requested', 'donating'],
         default: 'available'
     },
+    acceptedRequests: [{
+        type: mongoose.Schema.Types.ObjectId, // Fixed this line
+        ref: 'BloodRequest'
+    }],
+    rejectedRequests: [{
+        type: mongoose.Schema.Types.ObjectId, // Fixed this line
+        ref: 'BloodRequest'
+    }],
     password: {
         type: String,
         required: true

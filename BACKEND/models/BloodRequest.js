@@ -19,7 +19,7 @@ const bloodRequestSchema = new mongoose.Schema({
     },
     unitsFulfilled: {
         type: Number,
-        default: 0,
+        default:0,
     },
     status: {
         type: String,

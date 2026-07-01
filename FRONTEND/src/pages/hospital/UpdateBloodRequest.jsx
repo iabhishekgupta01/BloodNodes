@@ -3,6 +3,13 @@
 import "./UpdateBloodRequest.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
+import {getBloodRequestById, updateBloodRequest} from "../../api/bloodRequest.js";
+
 
 import {
   Droplets,
@@ -15,7 +22,85 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-function UpdateBloodRequest() {
+function UpdateBloodRequests() {
+  const {requestId} = useParams();
+  const [requestData, setRequestData] = useState([]);
+  const {id} = useAuth();
+  const navigate = useNavigate();
+  const {UpdateBloodRequest} = useAuth();
+  const[ errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  
+
+  useEffect(() => {
+    errorMessage && setErrorMessage("");
+    setIsError(false);
+    setIsLoading(true);
+    const fetchRequestData = async () => {
+      try {
+        const response = await getBloodRequestById(requestId);
+        if(response.hospital._id !== id){
+          setErrorMessage("Unauthorized access to this request");
+          setIsError(true);
+        } else {
+          setRequestData(response);
+        }
+      } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("Failed to fetch request data");
+        }
+        setIsError(true);
+      }
+    };
+
+    fetchRequestData();
+  }, []);
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsLoading(true);
+      try {
+        await updateBloodRequest(requestId, requestData);
+        navigate("/hospital/blood-requests/"+requestId);
+      } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("Failed to update blood request");
+        }
+        setIsError(true);
+      }
+    };
+
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setRequestData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <><Header />
     <div className="update-request-page">
@@ -55,7 +140,7 @@ function UpdateBloodRequest() {
 
         {/* FORM */}
 
-        <form className="update-form">
+        <form className="update-form" onSubmit={handleSubmit}>
 
           {/* BLOOD GROUP */}
 
@@ -71,7 +156,7 @@ function UpdateBloodRequest() {
 
                 <Droplets size={18} />
 
-                <select>
+                <select name="bloodGroup" value={requestData.bloodGroup} onChange={handleInputChange}>
 
                   <option>
                     Select Blood Group
@@ -114,6 +199,9 @@ function UpdateBloodRequest() {
               <input
                 type="number"
                 placeholder="Enter Units"
+                name="unitsNeeded"
+                value={requestData.unitsNeeded}
+                onChange={handleInputChange}
               />
 
             </div>
@@ -135,6 +223,9 @@ function UpdateBloodRequest() {
               <input
                 type="number"
                 placeholder="Fulfilled Units"
+                name="unitsFulfilled"
+                value={requestData.unitsFulfilled}
+                onChange={handleInputChange}
               />
 
             </div>
@@ -155,7 +246,7 @@ function UpdateBloodRequest() {
 
                 <AlertTriangle size={18} />
 
-                <select>
+                <select name="status" value={requestData.status} onChange={handleInputChange}>
 
                   <option>
                     Select Status
@@ -205,6 +296,9 @@ function UpdateBloodRequest() {
 
               <textarea
                 placeholder="Update patient or emergency details..."
+                name="description"
+                value={requestData.description}
+                onChange={handleInputChange}
               ></textarea>
 
             </div>
@@ -277,4 +371,4 @@ function UpdateBloodRequest() {
   );
 }
 
-export default UpdateBloodRequest;
+export default UpdateBloodRequests;

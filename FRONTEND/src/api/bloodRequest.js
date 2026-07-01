@@ -104,5 +104,78 @@ export const deleteBloodRequest = async (requestId) => {
     }
 };
 
+export const acceptBloodRequest = async (requestId,userId) => {
+    try {
+        const response = await API.post(`/blood-requests/${requestId}/accept`, { userId });
+        if (response.status === 200) {
+            return response.data;
+        }
+        else {
+            throw new Error("Failed to accept blood request");
+        }
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+            throw new Error(error.response.data.message);
+        }
+        console.error("Error accepting blood request:", error);
+        throw error;
+    }
+};
+
+export const acceptDoner = async (requestId, userId) => {
+    try {
+        const response = await API.post(`/blood-requests/${requestId}/accept-doner`, { userId });
+        if (response.status === 200) {
+            return response.data;
+        }
+        else {
+            throw new Error("Failed to accept doner for blood request");
+        }
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+            throw new Error(error.response.data.message);
+        }
+        console.error("Error accepting doner for blood request:", error);
+        throw error;
+    }
+};
+
+export const cancelBloodRequest = async (requestId, userId) => {
+    try {
+        const response = await API.post(`/blood-requests/${requestId}/cancel`, { userId });
+        if (response.status === 200) {
+            return response.data;
+        }
+        else {
+            throw new Error("Failed to cancel blood request");
+        }
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+            throw new Error(error.response.data.message);
+        }
+        console.error("Error canceling blood request:", error);
+        throw error;
+    }
+};
+
+export const updateBloodStatus = async (requestId, statusData) => {
+    try {
+        const response = await API.put(`/blood-requests/${requestId}/status`, statusData);
+        if (response.status === 200) {
+            return response.data;
+        }
+        else {
+            throw new Error("Failed to update blood request status");
+        }
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+            throw new Error(error.response.data.message);
+        }
+        console.error("Error updating blood request status:", error);
+        throw error;
+    }
+
+};
+
 
 

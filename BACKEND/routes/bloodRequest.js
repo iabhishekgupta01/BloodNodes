@@ -10,6 +10,9 @@ router.route('/').post( authenticateToken,isHospital, uploadForBloodRequest.sing
 router.route('/:requestId').get( authenticateToken ,bloodRequestController.getBloodRequestById);
 router.route('/:requestId').put( authenticateToken ,uploadForBloodRequest.single('image'),bloodRequestController.updateBloodRequest);
 router.route('/:requestId').delete( authenticateToken, isHospital ,bloodRequestController.deleteBloodRequest);
+router.route('/:requestId/accept').post( authenticateToken ,bloodRequestController.acceptBloodRequest);
+router.route('/:requestId/cancel').post( authenticateToken ,bloodRequestController.cancelBloodRequest);
+router.route('/:requestId/status').put( authenticateToken ,bloodRequestController.updateBloodStatus);
 
 module.exports=router;
 
